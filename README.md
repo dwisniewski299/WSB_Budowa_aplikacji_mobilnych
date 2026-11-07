@@ -18,9 +18,10 @@ React Native z Expo (szablon `blank`, JavaScript). Uzasadnienie: [docs/technolog
 | Expo SDK | 58 (`expo` 58.0.23) |
 | React Native | 0.88.1 |
 | React | 19.3.0 |
-| Expo Go | z Google Play, wersja obsługująca SDK 58 |
+| Expo Go | SDK 58.0.0, z Google Play |
+| Edytor | Visual Studio Code |
 
-Platforma docelowa: Android (telefon z aplikacją Expo Go).
+Platforma docelowa: Android (telefon z aplikacją Expo Go). Testowane na: Realme 9 (RMX3521), Android 14.
 
 ## Struktura projektu
 
@@ -29,6 +30,8 @@ Platforma docelowa: Android (telefon z aplikacją Expo Go).
 | `src/` | Kod aplikacji |
 | `assets/` | Ikony i grafiki aplikacji |
 | `docs/` | Dokumentacja techniczna |
+| `docs/screenshots/` | Zrzuty ekranu aplikacji |
+| `reports/` | Sprawozdania z laboratoriów |
 | `app.json` | Ustawienia aplikacji Expo |
 | `package.json` | Lista bibliotek i skrypty |
 | `package-lock.json` | Dokładne wersje bibliotek |
@@ -69,10 +72,18 @@ Testy automatyczne zostaną dodane w kolejnych laboratoriach.
 
 ## Zrealizowane funkcje
 
-- Szkielet aplikacji Expo uruchamiany na Androidzie.
+- Szkielet aplikacji Expo uruchamiany na Androidzie, z ekranem startowym "MOB-009 - SavingsGoals".
 
 ## Znane ograniczenia
 
 - Aplikacja nie ma jeszcze funkcji CRUD, są planowane w kolejnych laboratoriach.
 - Uruchamianie tylko przez Expo Go, bez osobnego pliku APK.
 - iOS nie był testowany (brak urządzenia i macOS).
+
+## Użycie AI
+
+Asystent AI (Claude Code) był wykorzystywany pomocniczo przy:
+
+- połączeniu aplikacji z telefonem przez Expo Go i wygenerowaniu kodu QR,
+- redagowaniu, poprawie i weryfikacji dokumentacji (zgodność z aktualnym stanem projektu),
+- ustalaniu przyczyn błędów podczas wysyłania zmian do GitHub.

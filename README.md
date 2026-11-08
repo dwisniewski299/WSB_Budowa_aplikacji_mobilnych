@@ -18,6 +18,9 @@ React Native z Expo (szablon `blank`, JavaScript). Uzasadnienie: [docs/technolog
 | Expo SDK | 58 (`expo` 58.0.23) |
 | React Native | 0.88.1 |
 | React | 19.3.0 |
+| React Navigation | 7.5.1 (`native-stack` 7.21.0) |
+| expo-sqlite | 58.0.15 |
+| expo-crypto | 58.0.7 |
 | Expo Go | SDK 58.0.0, z Google Play |
 | Edytor | Visual Studio Code |
 
@@ -27,11 +30,16 @@ Platforma docelowa: Android (telefon z aplikacją Expo Go). Testowane na: Realme
 
 | Element | Zawartość |
 |---|---|
-| `src/` | Kod aplikacji |
+| `src/App.js` | Start aplikacji i nawigacja |
+| `src/screens/` | Ekrany aplikacji |
+| `src/components/` | Wspólne komponenty interfejsu |
+| `src/logic/` | Walidacja i operacje na kwotach |
+| `src/data/` | Baza SQLite i repozytorium danych |
 | `assets/` | Ikony i grafiki aplikacji |
-| `docs/` | Dokumentacja techniczna |
-| `docs/screenshots/` | Zrzuty ekranu aplikacji |
+| `docs/` | Dokumentacja techniczna, w tym [architektura](docs/architecture.md) |
+| `docs/screenshots/` | Zrzut ekranu z Lab 1 |
 | `reports/` | Sprawozdania z laboratoriów |
+| `reports/assets/` | Zrzuty ekranu do sprawozdań |
 | `app.json` | Ustawienia aplikacji Expo |
 | `package.json` | Lista bibliotek i skrypty |
 | `package-lock.json` | Dokładne wersje bibliotek |
@@ -72,11 +80,17 @@ Testy automatyczne zostaną dodane w kolejnych laboratoriach.
 
 ## Zrealizowane funkcje
 
-- Szkielet aplikacji Expo uruchamiany na Androidzie, z ekranem startowym "MOB-009 - SavingsGoals".
+- Lista celów oszczędnościowych z komunikatem pustej listy.
+- Dodawanie celu z walidacją nazwy, kwoty docelowej i terminu.
+- Szczegóły celu z listą jego wpłat.
+- Dodawanie wpłaty do wybranego celu z walidacją kwoty i daty.
+- Trwały zapis w lokalnej bazie SQLite, dane zostają po ponownym uruchomieniu.
+- Blokada usunięcia celu z wpłatami na poziomie bazy (klucz obcy).
 
 ## Znane ograniczenia
 
-- Aplikacja nie ma jeszcze funkcji CRUD, są planowane w kolejnych laboratoriach.
+- Brak edycji i usuwania, wyszukiwania, filtrowania, sortowania z wyborem kierunku i postępu celu. Są planowane w kolejnych laboratoriach.
+- Daty wpisuje się ręcznie w formacie RRRR-MM-DD.
 - Uruchamianie tylko przez Expo Go, bez osobnego pliku APK.
 - iOS nie był testowany (brak urządzenia i macOS).
 
@@ -84,6 +98,7 @@ Testy automatyczne zostaną dodane w kolejnych laboratoriach.
 
 Asystent AI (Claude Code) był wykorzystywany pomocniczo przy:
 
-- połączeniu aplikacji z telefonem przez Expo Go i wygenerowaniu kodu QR,
-- redagowaniu, poprawie i weryfikacji dokumentacji (zgodność z aktualnym stanem projektu),
-- ustalaniu przyczyn błędów podczas wysyłania zmian do GitHub.
+- redagowaniu i weryfikacji dokumentacji (zgodność z aktualnym stanem projektu),
+- ustalaniu przyczyn błędów podczas wysyłania zmian do GitHub,
+- sprawdzaniu, czy zmiany trafiają na właściwe gałęzie i poprawnie do gałęzi main,
+- szukaniu przyczyn błędów w działaniu aplikacji, np. niewidocznego paska stanu.

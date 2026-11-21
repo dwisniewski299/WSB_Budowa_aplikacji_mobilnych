@@ -37,4 +37,15 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: '#b00020',
   },
+  row: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 16,
+  },
+  rowItem: {
+    flex: 1,
+  },
+  loading: {
+    marginTop: 24,
+  },
 });

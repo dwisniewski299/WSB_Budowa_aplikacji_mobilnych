@@ -9,6 +9,7 @@ import GoalListScreen from './screens/GoalListScreen';
 import GoalDetailsScreen from './screens/GoalDetailsScreen';
 import GoalFormScreen from './screens/GoalFormScreen';
 import PaymentFormScreen from './screens/PaymentFormScreen';
+import PaymentDetailsScreen from './screens/PaymentDetailsScreen';
 import { styles } from './styles';
 
 const Stack = createNativeStackNavigator();
@@ -50,16 +51,25 @@ export default function App() {
           <Stack.Screen
             name="GoalForm"
             component={GoalFormScreen}
-            options={{ title: 'Nowy cel' }}
+            options={({ route }) => ({
+              title: route.params?.id ? 'Edycja celu' : 'Nowy cel',
+            })}
+          />
+          <Stack.Screen
+            name="PaymentDetails"
+            component={PaymentDetailsScreen}
+            options={{ title: 'Szczegóły wpłaty' }}
           />
           <Stack.Screen
             name="PaymentForm"
             component={PaymentFormScreen}
-            options={{ title: 'Nowa wpłata' }}
+            options={({ route }) => ({
+              title: route.params?.id ? 'Edycja wpłaty' : 'Nowa wpłata',
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
     </SafeAreaProvider>
   );
 }

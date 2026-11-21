@@ -1,15 +1,39 @@
-import { useState } from 'react';
-import { Alert, Button, ScrollView, Text } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, Button, ScrollView, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Field from '../components/Field';
-import { createPayment } from '../logic/savings';
+import { getPayment } from '../data/repository';
+import { amountToText } from '../logic/money';
+import { createPayment, editPayment } from '../logic/savings';
 import { styles } from '../styles';
 
 export default function PaymentFormScreen({ navigation, route }) {
-  const { goalId } = route.params;
+  const { goalId, id } = route.params;
   const [form, setForm] = useState({ amount: '', date: '', note: '' });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
+  const [loading, setLoading] = useState(Boolean(id));
+
+  useEffect(() => {
+    if (!id) {
+      return;
+    }
+    getPayment(id)
+      .then((payment) => {
+        if (payment) {
+          setForm({
+            amount: amountToText(payment.amount),
+            date: payment.date,
+            note: payment.note || '',
+          });
+        }
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+        Alert.alert('Błąd', 'Nie udało się wczytać wpłaty.');
+      });
+  }, [id]);
 
   function change(field, value) {
     setForm({ ...form, [field]: value });
@@ -18,15 +42,24 @@ export default function PaymentFormScreen({ navigation, route }) {
   async function save() {
     setSaving(true);
     try {
-      const result = await createPayment(goalId, form);
+      const result = id ? await editPayment(id, form) : await createPayment(goalId, form);
       setErrors(result);
       if (Object.keys(result).length === 0) {
         navigation.goBack();
+        Alert.alert('Zapisano wpłatę.');
       }
     } catch {
       Alert.alert('Błąd', 'Nie udało się zapisać wpłaty. Spróbuj ponownie.');
     }
     setSaving(false);
+  }
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.screen} edges={['bottom']}>
+        <ActivityIndicator style={styles.loading} size="large" />
+      </SafeAreaView>
+    );
   }
 
   return (

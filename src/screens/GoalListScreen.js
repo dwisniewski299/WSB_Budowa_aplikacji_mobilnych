@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Button, FlatList, Pressable, Text } from 'react-native';
+import { ActivityIndicator, Button, FlatList, Pressable, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { getGoals } from '../data/repository';
@@ -21,6 +21,16 @@ export default function GoalListScreen({ navigation }) {
     }, [])
   );
 
+  function emptyView() {
+    if (error) {
+      return null;
+    }
+    if (!goals) {
+      return <ActivityIndicator style={styles.loading} size="large" />;
+    }
+    return <Text style={styles.empty}>Nie masz jeszcze żadnych celów.</Text>;
+  }
+
   return (
     <SafeAreaView style={styles.screen} edges={['bottom']}>
       {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -39,9 +49,7 @@ export default function GoalListScreen({ navigation }) {
             </Text>
           </Pressable>
         )}
-        ListEmptyComponent={
-          goals ? <Text style={styles.empty}>Nie masz jeszcze żadnych celów.</Text> : null
-        }
+        ListEmptyComponent={emptyView()}
       />
       <Button title="Dodaj cel" onPress={() => navigation.navigate('GoalForm')} />
     </SafeAreaView>

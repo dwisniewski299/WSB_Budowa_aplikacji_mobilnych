@@ -9,8 +9,12 @@ export function parseAmount(text) {
   return negative ? -cents : cents;
 }
 
-export function formatAmount(cents) {
+export function amountToText(cents) {
   const whole = Math.floor(cents / 100);
   const part = String(cents % 100).padStart(2, '0');
-  return `${whole},${part} zł`;
+  return `${whole},${part}`;
+}
+
+export function formatAmount(cents) {
+  return `${amountToText(cents)} zł`;
 }

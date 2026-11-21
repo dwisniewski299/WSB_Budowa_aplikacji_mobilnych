@@ -81,16 +81,18 @@ Testy automatyczne zostaną dodane w kolejnych laboratoriach.
 ## Zrealizowane funkcje
 
 - Lista celów oszczędnościowych z komunikatem pustej listy.
-- Dodawanie celu z walidacją nazwy, kwoty docelowej i terminu.
+- Dodawanie i edycja celu z walidacją nazwy, kwoty docelowej i terminu.
+- Usuwanie celu z potwierdzeniem, zablokowane, gdy cel ma wpłaty.
 - Szczegóły celu z listą jego wpłat.
-- Dodawanie wpłaty do wybranego celu z walidacją kwoty i daty.
+- Dodawanie, edycja i usuwanie wpłaty z walidacją kwoty i daty oraz potwierdzeniem usunięcia.
+- Szczegóły wpłaty.
+- Komunikaty po zapisie i usunięciu, kółko ładowania przy wczytywaniu danych.
 - Trwały zapis w lokalnej bazie SQLite, dane zostają po ponownym uruchomieniu.
-- Blokada usunięcia celu z wpłatami na poziomie bazy (klucz obcy).
 
 ## Znane ograniczenia
 
-- Brak edycji i usuwania, wyszukiwania, filtrowania, sortowania z wyborem kierunku i postępu celu. Są planowane w kolejnych laboratoriach.
-- Daty wpisuje się ręcznie w formacie RRRR-MM-DD.
+- Brak wyszukiwania, filtrowania, sortowania z wyborem kierunku i postępu celu.
+- Daty wpisuje się ręcznie w formacie RRRR-MM-DD. Komunikat o błędnej dacie nie rozróżnia złego formatu od dnia, który nie istnieje.
 - Uruchamianie tylko przez Expo Go, bez osobnego pliku APK.
 - iOS nie był testowany (brak urządzenia i macOS).
 
@@ -99,6 +101,7 @@ Testy automatyczne zostaną dodane w kolejnych laboratoriach.
 Asystent AI (Claude Code) był wykorzystywany pomocniczo przy:
 
 - redagowaniu i weryfikacji dokumentacji (zgodność z aktualnym stanem projektu),
+- edycji plików Markdown, aby diagramy wyświetlały się poprawnie na GitHubie,
 - ustalaniu przyczyn błędów podczas wysyłania zmian do GitHub,
 - sprawdzaniu, czy zmiany trafiają na właściwe gałęzie i poprawnie do gałęzi main,
 - szukaniu przyczyn błędów w działaniu aplikacji, np. niewidocznego paska stanu.
